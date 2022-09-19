@@ -9,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.springframework.lang.NonNull;
-
 @Entity
 public class Partie {
 	
@@ -22,7 +20,6 @@ public class Partie {
 	private ArrayList <Carte> cimetiere;
 	private ArrayList <Score> score;
 	
-	@NonNull
 	private Tour tour;
 
 	public Long getId_partie() {
@@ -65,28 +62,52 @@ public class Partie {
 	public void setScore(ArrayList<Score> score) {
 		this.score = score;
 	}
+	
 
-	public void lancerpartie(ArrayList<String> noms,ArrayList<Caste> castes) {
-		int nbr_joueurs=castes.size();
-		ArrayList <Joueur> joueurs = null;
-		for (int i=1; i<nbr_joueurs+1; ++i){
-			Score score= new Score(0);
-			Joueur joueur= new Joueur(i,noms.get(i), castes.get(i),score);
+	public Partie(ArrayList<Joueur> joueurs, ArrayList<Carte> bibliotheque) {
+		this.joueurs = joueurs;
+		this.bibliotheque = bibliotheque;
+	}
+
+	public Partie() {
+		
+	}
+
+@Override
+	public String toString() {
+		return "Partie [id_partie=" + id_partie + ", joueurs=" + joueurs + ", bibliotheque=" + bibliotheque
+				+ ", cimetiere=" + cimetiere + ", score=" + score + ", tour=" + tour + "]";
+	}
+
+//méthodes
+
+	//methode ok a tester avec des cartes
+	public ArrayList<Joueur> lancerpartie(Partie partie, ArrayList<String> noms, ArrayList<Caste> castes,ArrayList <Carte> bibliotheque) {
+		int nbr_joueurs = castes.size();
+		ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
+		for (int i = 0; i < nbr_joueurs; ++i) {
+			Score score = new Score(0);
+			Joueur joueur = new Joueur(i, noms.get(i),score ,castes.get(i),new ArrayList <Carte>(),new ArrayList <Carte>());
 			joueurs.add(joueur);
 		}
+		partie.setJoueurs(joueurs);
+		partie.setBibliotheque(bibliotheque);
+		return joueurs;
 	}
-	
-	public int randcarte (int taille) {
-		int randcarte = ThreadLocalRandom.current().nextInt(1, taille + 1);
+
+	// methode ok
+	public int randcarte(int taille) {
+		int randcarte = ThreadLocalRandom.current().nextInt(1, taille);
 		return randcarte;
 	}
 	
-	public void distribuer(ArrayList <Joueur> joueurs,Partie partie) {
+	public void distribuer(Partie partie) {
 		ArrayList <Carte> bibliotheque = partie.getBibliotheque();
 		int pioche=bibliotheque.size();
-		for (Joueur joueur : joueurs) {
-			ArrayList <Carte> main=null;
-			for (int i = 1; i < 5 + 1; ++i) {
+		ArrayList <Joueur> joueurs = partie.getJoueurs();
+		int nbre = 8-partie.getJoueurs().size();
+		for (Joueur joueur : joueurs) {	
+			for (int i = 1; i < nbre + 1; ++i) {
 				Carte carte = bibliotheque.get(randcarte(pioche));
 				joueur.getMain().add(carte);
 				bibliotheque.remove(carte);
@@ -94,31 +115,36 @@ public class Partie {
 			}
 		}	
 	}
-	
+	// a faire en session mais marche
 	public void echange(Joueur joueurinit, Joueur joueurrec,ArrayList<Carte> cartesJinit, 
 			ArrayList<Carte> cartesjrec) {
 		for (Carte carte : cartesJinit) {
+			ArrayList <Carte> mainrec=joueurrec.getMain();
+			mainrec.add(carte);
+			joueurrec.setMain(mainrec);
 			joueurinit.getMain().remove(carte);
-			joueurrec.getMain().add(carte);
 		}
 		for (Carte carte : cartesjrec) {
+			ArrayList <Carte> maininit=joueurinit.getMain();
+			maininit.add(carte);
+			joueurinit.setMain(maininit);
 			joueurrec.getMain().remove(carte);
-			joueurinit.getMain().add(carte);
 		}
 	}
+	
 	
 	public void pose(ArrayList <Joueur> joueurs,Carte carte,Joueur poseur,Joueur cible,Carte cartec) {
 		poseur.getMain().remove(carte);
 		poseur.getTable().add(carte);
 		Cible ciblec= carte.getCible();
 		poseur.getScore().setValeur(poseur.getScore().getValeur()+carte.getValeur());
-		ArrayList <Joueur> joueursc=designercible(joueurs, ciblec, poseur, cible);
-		effet(carte,cartec,joueursc,ciblec);
+		//ArrayList <Joueur> joueursc=designercible(joueurs, ciblec, poseur, cible);
+		//effet(carte,cartec,joueursc,ciblec);
 	}
 	
 	public ArrayList <Joueur> designercible (ArrayList <Joueur> joueursp,Cible cible,Joueur joueur,Joueur joueurc){
-
-		ArrayList <Joueur> joueurs =null;
+		
+		ArrayList <Joueur> joueursc =new ArrayList <Joueur>();
 		if(cible==Cible.joueur) {
 			joueurs.add(joueur);
 		}
@@ -127,9 +153,9 @@ public class Partie {
 		}
 		else if(cible==Cible.ennemis) {
 			joueursp.remove(joueur);
-			joueurs=joueursp;
+			joueursc=joueursp;
 		}
-		return joueurs;
+		return joueursc;
 		
 	}
 	
@@ -200,7 +226,7 @@ public class Partie {
 	}
 				
 	public ArrayList <Score> calculscore(ArrayList <Joueur> joueurs){
-		ArrayList <Score> scores= null;
+		ArrayList <Score> scores= new ArrayList <Score>();
 		for (Joueur joueur : joueurs) {
 			Score score=joueur.getScore();
 			score.setValeur(score.getValeur()+score.synergie(joueur)+score.suite(joueur)+score.caste(joueur)+score.couleur(joueur)+score.famille(joueur));
@@ -230,13 +256,13 @@ public class Partie {
 	}
 	
 	public ArrayList <Carte> mainJouC (Joueur joueur){
-		ArrayList <Carte> main = null;
+		ArrayList <Carte> main = new ArrayList <Carte>();
 		main=joueur.getTable();
 		return main;
 	}
 	
 	public ArrayList<Couleur> couleursTJoueur(ArrayList<Carte> tablej){
-		ArrayList<Couleur> couleurs = null;
+		ArrayList<Couleur> couleurs = new ArrayList<Couleur>();
 		
 		for (Carte carte : tablej) {
 			Couleur couleur=carte.getCouleur();
@@ -246,7 +272,7 @@ public class Partie {
 	}
 	
 	public ArrayList<Caste> castesTJoueur(ArrayList<Carte> tablej){
-		ArrayList<Caste> castes = null;
+		ArrayList<Caste> castes = new ArrayList <Caste>();
 		
 		for (Carte carte : tablej) {
 			Caste caste=carte.getCaste();

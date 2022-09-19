@@ -16,10 +16,12 @@ jaune,
 orange,
 gris,
 couleur,
-obun,
-vao,
-ukar,
+obun,// a voir comment gérer
+vao,// pas forcément utile mais "ne peut être ciblée a gérer
+ukar,// a voir comment faire la pioche/défausse
 aurige,
+recruteur,
+ingenieur,
 avesti,
 frere,
 eskatonique;

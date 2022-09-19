@@ -16,10 +16,17 @@ public class Score {
 	public Score(int valeur) {
 		this.valeur = valeur;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return ""+valeur+"";
+	}
 
 	public int suite(Joueur joueur) {
 		ArrayList <Carte> table=joueur.getTable();
-		ArrayList <Long> valeurs =null;
+		ArrayList <Long> valeurs =new ArrayList <Long>();
 		int suite=0;
 		for (Carte carte : table) {
 			valeurs.add((long) carte.getValeur());
@@ -39,9 +46,9 @@ public class Score {
 		return suite;
 	}
 	
-	public int couleur(Joueur joueur) {
+	public int famille(Joueur joueur) {
 		ArrayList <Carte> table=joueur.getTable();
-		ArrayList <Couleur> couleurs =null;
+		ArrayList <Couleur> couleurs =new ArrayList <Couleur>();
 		int couleurv=0;
 		for (Carte carte : table) {
 			couleurs.add(carte.getCouleur());
@@ -70,22 +77,16 @@ public class Score {
 				break;
 			}
 
-			if(rouge==5 || vert==5 || bleu==5 || orange==5 || jaune==5) {
-				couleurv=10;
-			}
-			else if(rouge==4 || vert==4 || bleu==4 || orange==4 || jaune==4) {
-				couleurv=5;
-			}
-			else if(rouge==3 || vert==3 || bleu==3 || orange==3 || jaune==3) {
+			if(rouge==3 || vert==3 || bleu==3 || orange==3 || jaune==3) {
 				couleurv=3;
 			}
 		}
 		return couleurv;
 	}
 	
-	public int famille (Joueur joueur) {
+	public int couleur (Joueur joueur) {
 		ArrayList <Carte> table=joueur.getTable();
-		ArrayList <Couleur> couleurs =null;
+		ArrayList <Couleur> couleurs =new ArrayList <Couleur>();
 		int famille=0;
 		for (Carte carte : table) {
 			couleurs.add(carte.getCouleur());
@@ -95,7 +96,7 @@ public class Score {
 		int bleu=0;
 		int orange=0;
 		int jaune=0;
-		ArrayList<Long> occurences=null;
+		ArrayList<Long> occurences=new ArrayList<Long>();
 		for (Couleur couleur : couleurs) {
 			switch (couleur) {
 			case rouge:
@@ -114,11 +115,11 @@ public class Score {
 				jaune++;
 				break;
 			}
-			if(rouge!=0) {occurences.add((long) rouge);}
-			if(vert!=0) {occurences.add((long) vert);}
-			if(bleu!=0) {occurences.add((long) bleu);}
-			if(orange!=0) {occurences.add((long) orange);}
-			if(jaune!=0) {occurences.add((long) jaune);}
+			if(rouge>2) {occurences.add((long) rouge);}
+			if(vert>2) {occurences.add((long) vert);}
+			if(bleu>2) {occurences.add((long) bleu);}
+			if(orange>2) {occurences.add((long) orange);}
+			if(jaune>2) {occurences.add((long) jaune);}
 			
 
 			if(occurences.size()==5) {
@@ -136,7 +137,7 @@ public class Score {
 	
 	public int caste (Joueur joueur) {
 		ArrayList <Carte> table=joueur.getTable();
-		ArrayList <Caste> castes =null;
+		ArrayList <Caste> castes =new ArrayList <Caste>();
 		int castev=0;
 		for (Carte carte : table) {
 			castes.add(carte.getCaste());
@@ -144,7 +145,7 @@ public class Score {
 		int noble=0;
 		int guildien=0;
 		int pretre=0;
-		ArrayList<Long> occurences=null;
+		ArrayList<Long> occurences=new ArrayList<Long>();
 		for (Caste caste : castes) {
 			switch (caste) {
 			case noble:
@@ -172,7 +173,7 @@ public class Score {
 	
 	public int synergie (Joueur joueur) {
 		ArrayList <Carte> table=joueur.getTable();
-		ArrayList <Caste> castes =null;
+		ArrayList <Caste> castes = new ArrayList <Caste>();
 		Caste castej= joueur.getCaste();
 		int synergie=0;
 		for (Carte carte : table) {
@@ -181,7 +182,7 @@ public class Score {
 		int noble=0;
 		int guildien=0;
 		int pretre=0;
-		ArrayList<Long> occurences=null;
+		ArrayList<Long> occurences=new ArrayList<Long>();
 		for (Caste caste : castes) {
 			switch (caste) {
 			case noble:

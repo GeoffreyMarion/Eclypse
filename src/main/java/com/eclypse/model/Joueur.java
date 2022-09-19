@@ -30,14 +30,12 @@ public class Joueur {
 		this.caste = caste;
 	}
 	
-	
 	public String getNom() {
 		return nom;
 	}
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	
 	
 	public ArrayList<Carte> getMain() {
 		return main;
@@ -51,11 +49,28 @@ public class Joueur {
 	public void setTable(ArrayList<Carte> table) {
 		this.table = table;
 	}
+	
+	
+	@Override
+	public String toString() {
+		return "Joueur [id_joueur=" + id_joueur + ", nom=" + nom + ", score=" + score + ", caste=" + caste + ", main="
+				+ main + ", table=" + table + "]";
+	}
 	public Joueur(int id_joueur,String nom,Caste caste,Score score) {
 		this.id_joueur = id_joueur;
 		this.nom = nom;
 		this.caste = caste;
 		this.score = score;
 	}
+	public Joueur(int id_joueur, String nom, Score score, Caste caste, ArrayList<Carte> main, ArrayList<Carte> table) {
+		this.id_joueur = id_joueur;
+		this.nom = nom;
+		this.score = score;
+		this.caste = caste;
+		this.main = main;
+		this.table = table;
+	}
+	
+	
 	
 }
