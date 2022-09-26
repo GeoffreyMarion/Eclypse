@@ -1,0 +1,122 @@
+<div th:replace="fragments/header::header"></div>
+
+<div class="container">
+	<div class="bg-dark text-light py-1 pl-4">
+		<h2 class="mx-5">Scores final</h2>
+	</div>
+	<div class="d-flex">
+<!-- 		<div class="col-2">menu boutons</div> -->
+		<div class="col-12">
+			corps table
+			<div class="d-flex">
+<!-- 			Joueur1 -->
+				<div class="col-5 bg-dark">
+					<div class="text-light  border border-light bg-secondary">
+						<span class="position-relative start-0 ms-2 fw-bold" th:text="Joueur1+' '+${joueur1.nom}"></span> <span
+							class="position-relative start-50 fw-bold" th:text="Score+' '+${joueur1.score.valeur}"></span><span
+							class="position-relative end-0 fw-bold" th:text="Caste+' '+${joueur1.caste}"></span>
+					</div>
+					<div class="d-flex flex-wrap px-2 pb-2">
+					<img alt="table" src="/images/table.png">
+						<div class="d-flex" th:each="carte:${joueur1.table}">
+							<div class="border border-dark me-2">
+								<img th:alt="${carte.nom}" th:src="${carte.image}"
+									style="height: 200px;">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-2"></div>
+<!-- 				Joueur2 -->
+				<div class="col-5 bg-dark">
+					<div class="text-light  border border-light bg-secondary">
+						<span class="position-relative start-0 ms-2 fw-bold" th:text="Joueur2+' '+${joueur2.nom}"></span> <span
+							class="position-relative start-50 fw-bold" th:text="Score+' '+${joueur2.score.valeur}"></span> <span
+							class="position-relative end-0 fw-bold" th:text="Caste+' '+${joueur2.caste}"></span>
+					</div>
+					<div class="d-flex flex-wrap px-2 pb-2">
+					<img alt="table" src="/images/table.png">
+						<div class="d-flex" th:each="carte:${joueur2.table}">
+							<div class="border border-dark me-2">
+								<img th:alt="${carte.nom}" th:src="${carte.image}"
+									style="height: 200px;">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+			<br>
+				<div class="ps-2 text-bg-secondary col-2 fs-5 border border-light">Scores</div>
+				<div class="ps-2 text-bg-danger col-12 fs-5 border border-light" th:text="${jgagnant.nom}+' a gagné avec un score de '+${jgagnant.score.valeur}"></div>
+				<table class="table table-dark">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Nom & Caste</th>
+							<th scope="col">Total</th>
+							<th scope="col">Cartes</th>
+							<th scope="col">Famille</th>
+							<th scope="col">Couleur</th>
+							<th scope="col">Suite</th>
+							<th scope="col">Caste</th>
+							<th scope="col">Synergie</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="joueur:${partie.joueurs}">
+							<th scope="row" th:text="${joueur.id_joueur+1}"></th>
+							<td scope="row" th:text="${joueur.nom}+' - '+${joueur.caste}"></td>
+							<td th:text="${joueur.score.valeur}"></td>
+							<td th:text="${joueur.score.scorecartes(joueur)}"></td>
+							<td th:text="${joueur.score.famille(joueur)}"></td>
+							<td th:text="${joueur.score.couleur(joueur)}"></td>
+							<td th:text="${joueur.score.suite(joueur)}"></td>
+							<td th:text="${joueur.score.caste(joueur)}"></td>
+							<td th:text="${joueur.score.synergie(joueur)}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="d-flex">
+<!-- 			Joueur4 -->
+				<div class="col-5 bg-dark">
+					<div class="text-light  border border-light bg-secondary">
+						<span class="position-relative start-0 ms-2 fw-bold" th:text="Joueur4+' '+${joueur4.nom}"></span> <span
+							class="position-relative start-50 fw-bold" th:text="Score+' '+${joueur4.score.valeur}"></span> <span
+							class="position-relative end-0 fw-bold" th:text="Caste+' '+${joueur4.caste}"></span>
+					</div>
+					<div class="d-flex flex-wrap px-2 pb-2">
+					<img alt="table" src="/images/table.png">
+						<div class="d-flex" th:each="carte:${joueur4.table}">
+							<div class="border border-dark me-2">
+								<img th:alt="${carte.nom}" th:src="${carte.image}"
+									style="height: 200px;">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-2"></div>
+<!-- 				joueur3 -->
+				<div class="col-5 bg-dark">
+					<div class="text-light  border border-light bg-secondary">
+						<span class="position-relative start-0 ms-2 fw-bold" th:text="Joueur3+' '+${joueur3.nom}"></span> <span
+							class="position-relative start-50 fw-bold" th:text="Score+' '+${joueur3.score.valeur}"></span> <span
+							class="position-relative end-0 fw-bold" th:text="Caste+' '+${joueur3.caste}"></span>
+					</div>
+					<div class="d-flex flex-wrap px-2 pb-2">
+					<img alt="table" src="/images/table.png">
+						<div class="d-flex" th:each="carte:${joueur3.table}">
+							<div class="border border-dark me-2">
+								<img th:alt="${carte.nom}" th:src="${carte.image}"
+									style="height: 200px;">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+<div th:replace="fragments/footer::footer"></div>

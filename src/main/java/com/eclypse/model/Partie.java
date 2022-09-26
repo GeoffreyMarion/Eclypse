@@ -10,17 +10,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Partie {
+public class Partie{
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_partie;
 	
+	//@NonNull
 	private ArrayList <Joueur> joueurs;
+	
 	private ArrayList <Carte> bibliotheque;
 	private ArrayList <Carte> cimetiere;
+	
+	//@NonNull
 	private ArrayList <Score> score;
 	
 	private Tour tour;
+	private Phase phase;
 
 	public Long getId_partie() {
 		return id_partie;
@@ -62,7 +67,22 @@ public class Partie {
 	public void setScore(ArrayList<Score> score) {
 		this.score = score;
 	}
-	
+
+	public Tour getTour() {
+		return tour;
+	}
+
+	public void setTour(Tour tour) {
+		this.tour = tour;
+	}
+
+	public Phase getPhase() {
+		return phase;
+	}
+
+	public void setPhase(Phase phase) {
+		this.phase = phase;
+	}
 
 	public Partie(ArrayList<Joueur> joueurs, ArrayList<Carte> bibliotheque) {
 		this.joueurs = joueurs;
@@ -134,9 +154,9 @@ public class Partie {
 	
 	
 	public void pose(ArrayList <Joueur> joueurs,Carte carte,Joueur poseur,Joueur cible,Carte cartec) {
-		poseur.getMain().remove(carte);
 		poseur.getTable().add(carte);
-		Cible ciblec= carte.getCible();
+		poseur.getMain().remove(carte);
+		//Cible ciblec= carte.getCible();
 		poseur.getScore().setValeur(poseur.getScore().getValeur()+carte.getValeur());
 		//ArrayList <Joueur> joueursc=designercible(joueurs, ciblec, poseur, cible);
 		//effet(carte,cartec,joueursc,ciblec);
@@ -233,26 +253,6 @@ public class Partie {
 			scores.add(score);
 		}
 		return scores;
-	}
-	
-	public Joueur selectJ (int id) {
-		Partie partie = new Partie();
-		ArrayList <Joueur> joueurs=partie.getJoueurs();// a modif en récupérant la session
-		Joueur joueur=joueurs.get(id);
-		return joueur;
-	}
-
-	public Joueur nextJ(int id) {
-		Partie partie = new Partie();
-		ArrayList<Joueur> joueurs = partie.getJoueurs();// a modif en récupérant la session
-		int taille = joueurs.size();
-		if (id == taille) {
-			Joueur joueur = joueurs.get(1);
-			return joueur;
-		} else {
-			Joueur joueur = joueurs.get(id + 1);
-			return joueur;
-		}
 	}
 	
 	public ArrayList <Carte> mainJouC (Joueur joueur){

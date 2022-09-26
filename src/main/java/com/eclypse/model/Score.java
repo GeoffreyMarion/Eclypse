@@ -1,3 +1,4 @@
+
 package com.eclypse.model;
 
 import java.util.ArrayList;
@@ -23,13 +24,13 @@ public class Score {
 	public String toString() {
 		return ""+valeur+"";
 	}
-
+	
 	public int suite(Joueur joueur) {
 		ArrayList <Carte> table=joueur.getTable();
-		ArrayList <Long> valeurs =new ArrayList <Long>();
+		ArrayList <Integer> valeurs =new ArrayList <Integer>();
 		int suite=0;
 		for (Carte carte : table) {
-			valeurs.add((long) carte.getValeur());
+			valeurs.add((int) carte.getValeur());
 		}
 		if(valeurs.contains(1)&&valeurs.contains(2)&&valeurs.contains(3))
 			if (valeurs.contains(4)) {
@@ -78,25 +79,25 @@ public class Score {
 			}
 
 			if(rouge==3 || vert==3 || bleu==3 || orange==3 || jaune==3) {
-				couleurv=3;
+				couleurv=5;
 			}
 		}
 		return couleurv;
 	}
 	
-	public int couleur (Joueur joueur) {
-		ArrayList <Carte> table=joueur.getTable();
-		ArrayList <Couleur> couleurs =new ArrayList <Couleur>();
-		int famille=0;
+	public int couleur(Joueur joueur) {
+		ArrayList<Carte> table = joueur.getTable();
+		ArrayList<Couleur> couleurs = new ArrayList<Couleur>();
+		int sccouleur = 0;
 		for (Carte carte : table) {
 			couleurs.add(carte.getCouleur());
 		}
-		int rouge=0;
-		int vert=0;
-		int bleu=0;
-		int orange=0;
-		int jaune=0;
-		ArrayList<Long> occurences=new ArrayList<Long>();
+		int rouge = 0;
+		int vert = 0;
+		int bleu = 0;
+		int orange = 0;
+		int jaune = 0;
+		ArrayList<Long> occurences = new ArrayList<Long>();
 		for (Couleur couleur : couleurs) {
 			switch (couleur) {
 			case rouge:
@@ -115,25 +116,33 @@ public class Score {
 				jaune++;
 				break;
 			}
-			if(rouge>2) {occurences.add((long) rouge);}
-			if(vert>2) {occurences.add((long) vert);}
-			if(bleu>2) {occurences.add((long) bleu);}
-			if(orange>2) {occurences.add((long) orange);}
-			if(jaune>2) {occurences.add((long) jaune);}
-			
-
-			if(occurences.size()==5) {
-				famille=10;
-			}
-			else if(occurences.size()==4) {
-				famille=5;
-			}
-			else if(occurences.size()==3) {
-				famille=3;
-			}
 		}
-		return famille;
+		if (rouge != 0) {
+			occurences.add((long) rouge);
+		}
+		if (vert != 0) {
+			occurences.add((long) vert);
+		}
+		if (bleu != 0) {
+			occurences.add((long) bleu);
+		}
+		if (orange != 0) {
+			occurences.add((long) orange);
+		}
+		if (jaune != 0) {
+			occurences.add((long) jaune);
+		}
+
+		if (occurences.size() == 5) {
+			sccouleur = 10;
+		} else if (occurences.size() == 4) {
+			sccouleur = 5;
+		} else if (occurences.size() == 3) {
+			sccouleur = 3;
+		}
+		return sccouleur;
 	}
+		
 	
 	public int caste (Joueur joueur) {
 		ArrayList <Carte> table=joueur.getTable();
@@ -200,5 +209,15 @@ public class Score {
 		else if(castej==Caste.pretre) {synergie=pretre;}
 		}
 		return synergie;
+	}
+	
+	public int scorecartes (Joueur joueur) {
+		ArrayList <Carte> table = joueur.getTable();
+		int scorecartes=0;
+		for (Carte carte : table) {
+			scorecartes+= carte.getValeur();
+		}
+	
+		return scorecartes;
 	}
 }

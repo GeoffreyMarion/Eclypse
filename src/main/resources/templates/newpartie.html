@@ -1,0 +1,72 @@
+<div th:replace="fragments/header::header"></div>
+
+<div class="container">
+	<div class="bg-dark text-light py-1 pl-4">
+		<h2 class="mx-5">Lancer la partie</h2>
+	</div>
+	<br>
+	<p class="bg-secondary text-light p-4">Chaque joueur doit entrer
+		son nom et choisir une Caste, celle ci lui donnera un bonus de score
+		pour chaque carte qu'il pose qui possède la même Caste que lui.</p>
+	<form method="post">
+		<!-- 		Joueur1 -->
+		<div class="form-group">
+			<label for="nomj1">Nom Joueur1</label> <input type="text"
+				class="form-control" id="nomj1" placeholder="Nom Joueur1"
+				name="nomj1" required>
+		</div>
+		<div class="form-check">
+			<label>Caste Joueur1</label> <select class="form-control"
+				name="castej1">
+				<option th:each="caste:${castes}" th:value="${caste}"
+					th:text="${caste}"></option>
+			</select>
+		</div>
+		<hr>
+		<!-- 		Joueur2 -->
+		<div class="form-group">
+			<label for="nomj2">Nom Joueur2</label> <input type="text"
+				class="form-control" id="nomj2" placeholder="Nom Joueur2"
+				name="nomj2" required>
+		</div>
+		<div class="form-check">
+			<label>Caste Joueur2</label> <select class="form-control"
+				name="castej2">
+				<option th:each="caste:${castes}" th:value="${caste}"
+					th:text="${caste}"></option>
+			</select>
+		</div>
+		<hr>
+		<!-- 		Joueur3 -->
+		<div class="form-group">
+			<label for="nomj3">Nom Joueur3</label> <input type="text"
+				class="form-control" id="nomj3" placeholder="Nom Joueur3"
+				name="nomj3" required>
+		</div>
+		<div class="form-check">
+			<label>Caste Joueur3</label> <select class="form-control"
+				name="castej3">
+				<option th:each="caste:${castes}" th:value="${caste}"
+					th:text="${caste}"></option>
+			</select>
+		</div>
+		<hr>
+		<!-- 		Joueur4	 -->
+		<div class="form-group">
+			<label for="nomj4">Nom Joueur4</label> <input type="text"
+				class="form-control" id="nomj4" placeholder="Nom Joueur4"
+				name="nomj4" required>
+		</div>
+		<div class="form-check">
+			<label>Caste Joueur4</label> <select class="form-control"
+				name="castej4">
+				<option th:each="caste:${castes}" th:value="${caste}"
+					th:text="${caste}"></option>
+			</select>
+		</div>
+		<br>
+		<button type="submit" class="btn btn-sm btn-dark">Submit</button>
+	</form>
+</div>
+<br>
+<div th:replace="fragments/footer::footer"></div>

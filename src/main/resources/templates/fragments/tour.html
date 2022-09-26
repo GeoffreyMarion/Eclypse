@@ -1,0 +1,71 @@
+<div class="d-flex m-2" th:fragment="tour4j">
+	<div class="mx-3 p-1">
+		<h5>Partie</h5>
+	</div>
+	<div class="mx-2 p-1 bg-secondary border border-danger border-2"
+		th:if="${partie.tour.toString() == 'T1_4'}">
+		<h5>Tour 1</h5>
+	</div>
+	<div class="mx-2 p-1 bg-secondary"
+		th:if="${partie.tour.toString() != 'T1_4'}">
+		<h5>Tour 1</h5>
+	</div>
+	<div class="mx-1 p-1 text-bg-dark border border-danger border-2"
+		th:if="${partie.phase.toString().contains('E') && partie.tour.toString() == 'T1_4'}">Echange</div>
+	<div class="mx-1 p-1 text-bg-dark"
+		th:if="${partie.phase.toString().contains('P')||(partie.phase.toString().contains('E') && partie.tour.toString() != 'T1_4')}">Echange</div>
+	<div class="mx-1 p-1 text-bg-light border border-danger border-2"
+		th:if="${partie.phase.toString().contains('P') && partie.tour.toString() == 'T1_4'}">Pose</div>
+	<div class="mx-1 p-1 text-bg-light border border-dark"
+		th:if="${partie.phase.toString().contains('E')||(partie.phase.toString().contains('P') && partie.tour.toString() != 'T1_4')}">Pose</div>
+
+	<div class="mx-2 p-1 bg-secondary border border-danger border-2"
+		th:if="${partie.tour.toString() == 'T2_4'}">
+		<h5>Tour 2</h5>
+	</div>
+	<div class="mx-2 p-1 bg-secondary"
+		th:if="${partie.tour.toString() != 'T2_4'}">
+		<h5>Tour 2</h5>
+	</div>
+	<div class="mx-1 p-1 text-bg-dark border border-danger border-2"
+		th:if="${partie.phase.toString().contains('E') && partie.tour.toString() == 'T2_4'}">Echange</div>
+	<div class="mx-1 p-1 text-bg-dark"
+		th:if="${partie.phase.toString().contains('P')||(partie.phase.toString().contains('E') && partie.tour.toString() != 'T2_4')}">Echange</div>
+	<div class="mx-1 p-1 text-bg-light border border-danger border-2"
+		th:if="${partie.phase.toString().contains('P') && partie.tour.toString() == 'T2_4'}">Pose</div>
+	<div class="mx-1 p-1 text-bg-light border border-dark"
+		th:if="${partie.phase.toString().contains('E')||(partie.phase.toString().contains('P') && partie.tour.toString() != 'T2_4')}">Pose</div>
+
+	<div class="mx-2 p-1 bg-secondary border border-danger boder-2"
+		th:if="${partie.tour.toString() == 'T3_4'}">
+		<h5>Tour 3</h5>
+	</div>
+	<div class="mx-2 p-1 bg-secondary"
+		th:if="${partie.tour.toString() != 'T3_4'}">
+		<h5>Tour 3</h5>
+	</div>
+	<div class="mx-1 p-1 text-bg-dark border border-danger border-2"
+		th:if="${partie.phase.toString().contains('E') && partie.tour.toString() == 'T3_4'}">Echange</div>
+	<div class="mx-1 p-1 text-bg-dark"
+		th:if="${partie.phase.toString().contains('P')||(partie.phase.toString().contains('E') && partie.tour.toString() != 'T3_4')}">Echange</div>
+	<div class="mx-1 p-1 text-bg-light border border-danger border-2"
+		th:if="${partie.phase.toString().contains('P') && partie.tour.toString() == 'T3_4'}">Pose</div>
+	<div class="mx-1 p-1 text-bg-light border border-dark"
+		th:if="${partie.phase.toString().contains('E')||(partie.phase.toString().contains('P') && partie.tour.toString() != 'T3_4')}">Pose</div>
+
+	<div class="mx-2 p-1 bg-secondary border border-danger border-2"
+		th:if="${partie.tour.toString() == 'T4_4'}">
+		<h5>Tour 4</h5>
+	</div>
+	<div class="mx-2 p-1 bg-secondary"
+		th:if="${partie.tour.toString() != 'T4_4'}">
+		<h5>Tour 4</h5>
+	</div>
+	<div class="mx-1 p-1 text-bg-light border border-danger border-2"
+		th:if="${partie.phase.toString().contains('P') && partie.tour.toString() == 'T4_4'}">Pose</div>
+	<div class="mx-1 p-1 text-bg-light border border-dark"
+		th:if="${partie.phase.toString().contains('E')||(partie.phase.toString().contains('P') && partie.tour.toString() != 'T4_4')}">Pose</div>
+	<div class="mx-3 text-bg-danger">
+		<h5>Score</h5>
+	</div>
+</div>

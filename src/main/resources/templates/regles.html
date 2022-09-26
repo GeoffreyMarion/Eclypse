@@ -1,0 +1,135 @@
+<div th:replace="fragments/header::header"></div>
+
+<div class="container">
+	<div class="bg-dark text-light py-1 pl-4">
+		<h2 class="mx-5">Règles</h2>
+	</div>
+	<br>
+	<div class="bg-secondary text-light py-1 pl-4">
+		<p class="px-4">
+			La croupière désigne le premier joueur. Celui-ci se voit distribuer
+			une carte de plus lors de la distribution, mais il doit en défausser
+			une avant son premier échange.<br> <br>Lorsqu’une carte est
+			jouée, son effet s’applique immédiatement. Par exemple (+3 par nobles
+			au joueur +> si le joueur a déjà posé deux cartes nobles devant lui
+			il gagne 6, si cette carte est la première posée et que ses deux
+			nobles sont encore dans sa main il ne gagne rien.) <br> <br>On
+			utilisera des jetons pour figurer les gains et pertes de points au
+			fur et à mesure que la partie avance.<br> <br>Le joueur qui
+			a le plus haut score à la fin gagne, en cas d’égalité au score celui
+			qui a le plus de guildiens gagne, en cas d’égalité de nombre de
+			guildiens, celui qui a le plus de Jaune, puis bleu.<br> <br>Lors
+			des phases d’échange de cartes, celles-ci sont transmises à l’autre
+			joueur face cachée.
+		</p>
+	</div>
+	<br>
+	<div class="bg-dark text-light py-1 pl-4">
+		<h3 class="mx-5">Version à 4 joueurs</h3>
+	</div>
+	<h5 class="mx-5 bg-light text-dark ">Chacun pioche 4 cartes en
+		début de partie</h5>
+	<ul class="bg-light text-dark py-1 pl-4 border border-dark">
+		<li><b>Première phase d’échanges :</b> le premier joueur prend
+			une à trois cartes de sa main et les échange contre un nombre
+			équivalent de cartes avec le joueur à sa gauche. Celui-ci fait de
+			même avec son propre voisin de gauche, et ainsi de suite jusqu’à ce
+			que le premier joueur ait été la cible d’un échange de cartes de la
+			part de son voisin de droite. Autrement dit, on effectue un tour
+			complet d’échanges.</li>
+		<li><b>Première phase de pose :</b> chaque joueur doit poser à
+			tour de rôle une carte devant lui en commençant par le premier
+			joueur.</li>
+		<li><b>Deuxième phase d’échange :</b> le premier joueur laisse
+			son titre à son voisin de gauche. La phase d’échange est similaire à
+			la première, sauf qu’on ne peut échanger que deux cartes maximum par
+			échange.</li>
+		<li><b>Deuxième phase de pose :</b> chaque joueur doit poser à
+			tour de rôle une carte devant lui en commençant par le premier
+			joueur.</li>
+		<li><b>Dernier tour d’échange :</b> l’actuel premier joueur
+			laisse à son tour son titre à son voisin de gauche. Lors de ce tour,
+			une seule carte est échangée par échange.</li>
+		<li><b>Troisième phase de pose :</b> chaque joueur doit poser à
+			tour de rôle une carte devant lui en commençant par le premier
+			joueur.</li>
+		<li><b>Dernière phase de pose :</b> chaque joueur pose sa
+			dernière carte à tour de rôle tour en commençant par le premier
+			joueur.</li>
+		<li><b>On compte ensuite l’ensemble des points pour
+				déterminer le vainqueur. Des bonus liés aux suites, couleurs et
+				castes s’appliquent (voir plus bas).</b></li>
+	</ul>
+
+<!-- 	<div> -->
+<!-- 		<div class="bg-dark text-light py-1 pl-4"> -->
+<!-- 			<h3 class="mx-5">Version à 3 joueurs</h3> -->
+<!-- 		</div> -->
+<!-- 		<h5 class="mx-5 bg-light text-dark ">Chacun pioche 5 cartes en -->
+<!-- 			début de partie</h5> -->
+<!-- 		<ul class="bg-light text-dark py-1 pl-4 border border-dark"> -->
+<!-- 			<li><b>Première phase d’échanges :</b> le premier joueur prend -->
+<!-- 				une à trois cartes de sa main et les échange contre un nombre -->
+<!-- 				équivalent de cartes avec le joueur à sa gauche. Celui-ci fait de -->
+<!-- 				même avec son propre voisin de gauche, et ainsi de suite jusqu’à ce -->
+<!-- 				que le premier joueur ait été la cible d’un échange de cartes de la -->
+<!-- 				part de son voisin de droite. Autrement dit, on effectue un tour -->
+<!-- 				complet d’échanges.</li> -->
+<!-- 			<li><b>Première phase de pose :</b> chaque joueur doit poser à -->
+<!-- 				tour de rôle une carte devant lui en commençant par le premier -->
+<!-- 				joueur.</li> -->
+<!-- 			<li><b>Deuxième phase d’échange :</b> le premier joueur laisse -->
+<!-- 				son titre à son voisin de gauche. La phase d’échange est similaire à -->
+<!-- 				la première, sauf qu’on ne peut échanger que deux cartes maximum par -->
+<!-- 				échange.</li> -->
+<!-- 			<li><b>Deuxième phase de pose :</b> chaque joueur doit poser à -->
+<!-- 				tour de rôle une carte devant lui en commençant par le premier -->
+<!-- 				joueur.</li> -->
+<!-- 			<li><b>Dernier tour d’échange :</b> l’actuel premier joueur -->
+<!-- 				laisse à son tour son titre à son voisin de gauche. Lors de ce tour, -->
+<!-- 				une seule carte est échangée par échange.</li> -->
+<!-- 			<li><b>Troisième phase de pose :</b> chaque joueur doit poser à -->
+<!-- 				tour de rôle une carte devant lui en commençant par le premier -->
+<!-- 				joueur.</li> -->
+<!-- 			<li><b>Quatrième phase de pose :</b> chaque joueur doit poser à -->
+<!-- 				tour de rôle une carte devant lui en commençant par le premier -->
+<!-- 				joueur.</li> -->
+<!-- 			<li><b>Dernière phase de pose :</b> chaque joueur pose sa -->
+<!-- 				dernière carte à tour de rôle tour en commençant par le premier -->
+<!-- 				joueur.</li> -->
+<!-- 			<li><b>On compte ensuite l’ensemble des points pour -->
+<!-- 					déterminer le vainqueur. Des bonus liés aux suites, couleurs et -->
+<!-- 					castes s’appliquent (voir plus bas).</b></li> -->
+<!-- 		</ul> -->
+<!-- 	</div> -->
+
+	<div class="bg-dark text-light py-1 pl-4">
+		<h3 class="mx-5">Bonus de fin de partie</h3>
+	</div>
+	<h5 class="mx-5 bg-light text-dark ">Suites</h5>
+	<ul class="bg-light text-dark py-1 pl-4 border border-dark">
+		<li>1-2-3-4-5 (3 joueurs) donne 10 points</li>
+		<li>1-2-3-4 (3 et 4 joueurs) donne 5 points</li>
+		<li>1-2-3 (3 et 4 joueurs) donne 3 points</li>
+	</ul>
+	<h5 class="mx-5 bg-light text-dark ">Couleurs</h5>
+	<ul class="bg-light text-dark py-1 pl-4 border border-dark">
+		<li>5 couleurs différentes (3 joueurs) donnent 10 points</li>
+		<li>4 couleurs différentes (3 et 4 joueurs) donnent 5 points</li>
+		<li>3 couleurs différentes (3 et 4 joueurs) donnent 3 points</li>
+		<li>3 cartes de la même couleur (3 et 4 joueurs) donnent 5
+			points.</li>
+	</ul>
+	<h5 class="mx-5 bg-light text-dark ">Castes</h5>
+	<ul class="bg-light text-dark py-1 pl-4 border border-dark">
+		<li>5 cartes d’une caste (3 joueurs) donnent 10 points</li>
+		<li>4 cartes d’une caste (3 et 4 joueurs) donnent 5 points</li>
+		<li>3 cartes d’une caste (3 et 4 joueurs) donnent 3 points</li>
+	</ul>
+	<h5 class="mx-5 bg-light text-dark ">Synergie</h5>
+	<p class="bg-light text-dark ps-4 py-1 pl-4 border border-dark">Chaque
+		carte jouée de la caste du joueur lui donne 1 point. Par exemple, si
+		un joueur noble joue 2 cartes nobles, il gagne 2 points
+		supplémentaires.</p>
+</div>
+<div th:replace="fragments/footer::footer"></div>

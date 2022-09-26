@@ -1,0 +1,157 @@
+<div th:replace="fragments/header::header"></div>
+
+<div class="container">
+	<div class="bg-dark text-light py-1 pl-4">
+		<h2 class="mx-5">Table de jeu</h2>
+	</div>
+	<div th:replace="fragments/tour::tour4j"></div>
+	<div class="d-flex">
+		<div class="col-2">menu boutons</div>
+		<div class="col-8">
+			corps table
+			<div class="d-flex">
+				<!-- 			Joueur1 -->
+				<div class="col-5">
+					<div>
+						<span class="start-0" th:text="${joueur1.nom}"></span> <span
+							class="start-50" th:text="${joueur1.score.valeur}"></span> <span
+							class="end-0" th:text="${joueur1.caste}"></span>
+					</div>
+					main
+					<div class="d-flex" th:each="carte:${joueur1.main}">
+						<div class="border border-dark">
+							<div>
+								<span th:text="${carte.caste}"></span> <span
+									th:text="${carte.nom}"></span>
+							</div>
+							<span th:text="${carte.valeur}"></span> <span
+								th:text="${carte.couleur}"></span>
+						</div>
+					</div>
+					table
+					<div class="d-flex" th:each="carte:${joueur1.table}">
+						<div class="border border-dark">
+							<div>
+								<span th:text="${carte.caste}"></span> <span
+									th:text="${carte.nom}"></span>
+							</div>
+							<span th:text="${carte.valeur}"></span> <span
+								th:text="${carte.couleur}"></span>
+						</div>
+					</div>
+					<div th:if="${partie.phase.toString() == 'P1'}">
+						<form th:replace="fragments/choix::radio"></form>
+					</div>
+				</div>
+				<div class="col-2"></div>
+				<!-- 				Joueur2 -->
+				<div class="col-5">
+					<div>
+						<span class="start-0" th:text="${joueur2.nom}"></span> <span
+							class="start-50" th:text="${joueur2.score.valeur}"></span> <span
+							class="end-0" th:text="${joueur2.caste}"></span>
+					</div>
+					main
+					<div class="d-flex" th:each="carte:${joueur2.main}">
+						<div class="border border-dark">
+							<div>
+								<span th:text="${carte.caste}"></span> <span
+									th:text="${carte.nom}"></span>
+							</div>
+							<span th:text="${carte.valeur}"></span> <span
+								th:text="${carte.couleur}"></span>
+						</div>
+					</div>
+					table
+					<div class="d-flex" th:each="carte:${joueur2.table}">
+						<div class="border border-dark">
+							<div>
+								<span th:text="${carte.caste}"></span> <span
+									th:text="${carte.nom}"></span>
+							</div>
+							<span th:text="${carte.valeur}"></span> <span
+								th:text="${carte.couleur}"></span>
+						</div>
+					</div>
+					<div th:if="${partie.phase.toString() == 'P2'}">
+						<form th:replace="fragments/choix::radio"></form>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="col-6 m-4">echange</div>
+			</div>
+			<div class="d-flex">
+				<!-- 			Joueur4 -->
+				<div class="col-5">
+					<div>
+						<span class="start-0" th:text="${joueur4.nom}"></span> <span
+							class="start-50" th:text="${joueur4.score.valeur}"></span> <span
+							class="end-0" th:text="${joueur4.caste}"></span>
+					</div>
+					main
+					<div class="d-flex" th:each="carte:${joueur4.main}">
+						<div class="border border-dark">
+							<div>
+								<span th:text="${carte.caste}"></span> <span
+									th:text="${carte.nom}"></span>
+							</div>
+							<span th:text="${carte.valeur}"></span> <span
+								th:text="${carte.couleur}"></span>
+						</div>
+					</div>
+					table
+					<div class="d-flex" th:each="carte:${joueur4.table}">
+						<div class="border border-dark">
+							<div>
+								<span th:text="${carte.caste}"></span> <span
+									th:text="${carte.nom}"></span>
+							</div>
+							<span th:text="${carte.valeur}"></span> <span
+								th:text="${carte.couleur}"></span>
+						</div>
+					</div>
+					<div th:if="${partie.phase.toString() == 'P4'}">
+						<form th:replace="fragments/choix::radio"></form>
+					</div>
+				</div>
+				<div class="col-2"></div>
+				<!-- 				joueur3 -->
+				<div class="col-5">
+					<div>
+						<span class="start-0" th:text="${joueur3.nom}"></span> <span
+							class="start-50" th:text="${joueur3.score.valeur}"></span> <span
+							class="end-0" th:text="${joueur3.caste}"></span>
+					</div>
+					main
+					<div class="d-flex" th:each="carte:${joueur3.main}">
+						<div class="border border-dark">
+							<div>
+								<span th:text="${carte.caste}"></span> <span
+									th:text="${carte.nom}"></span>
+							</div>
+							<span th:text="${carte.valeur}"></span> <span
+								th:text="${carte.couleur}"></span>
+						</div>
+					</div>
+					table
+					<div class="d-flex" th:each="carte:${joueur3.table}">
+						<div class="border border-dark">
+							<div>
+								<span th:text="${carte.caste}"></span> <span
+									th:text="${carte.nom}"></span>
+							</div>
+							<span th:text="${carte.valeur}"></span> <span
+								th:text="${carte.couleur}"></span>
+						</div>
+					</div>
+					<div th:if="${partie.phase.toString() == 'P3'}">
+						<form th:replace="fragments/choix::radio"></form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<div th:replace="fragments/footer::footer"></div>

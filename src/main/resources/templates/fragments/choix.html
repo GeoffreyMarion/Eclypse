@@ -1,0 +1,49 @@
+<form method="post" th:fragment="checkbox" class="px-4" id="sectionForm">
+	<fieldset>
+		<div class="form-check form-check-inline me-3">
+			<input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+				value="0" name="carte"> <label class="form-check-label text-light"
+				for="inlineCheckbox1">carte 1</label>
+		</div>
+		<div class="form-check form-check-inline me-3">
+			<input class="form-check-input" type="checkbox" id="inlineCheckbox2"
+				value="1" name="carte"> <label class="form-check-label text-light"
+				for="inlineCheckbox2">carte 2</label>
+		</div>
+		<div class="form-check form-check-inline me-3"
+			th:if="${partie.tour.toString() == 'T1_4' || partie.tour.toString() == 'T2_4'}">
+			<input class="form-check-input" type="checkbox" id="inlineCheckbox3"
+				value="2" name="carte"> <label class="form-check-label text-light"
+				for="inlineCheckbox3">carte 3</label>
+		</div>
+		<div class="form-check form-check-inline me-3"
+			th:if="${partie.tour.toString() == 'T1_4'}">
+			<input class="form-check-input" type="checkbox" id="inlineCheckbox3"
+				value="3" name="carte"> <label class="form-check-label text-light"
+				for="inlineCheckbox3">carte 4</label>
+		</div>
+		<button class="btn btn-light btn-sm" type="submit" id="checkBtn">Echanger</button>
+	</fieldset>
+	<script src="/script/checkbox.js"></script>
+</form>
+
+<form method="post" th:fragment="radio" class="d-flex px-4">
+	<div class="form-check me-3">
+		<input class="form-check-input" type="radio" name="carte" value="0" required>
+		<label class="form-check-label text-light"> carte 1 </label>
+	</div>
+	<div class="form-check me-3" th:if="${partie.tour.toString() != 'T4_4'}">
+		<input class="form-check-input" type="radio" name="carte" value="1" required>
+		<label class="form-check-label text-light"> carte 2 </label>
+	</div>
+	<div class="form-check me-3"
+		th:if="${partie.tour.toString() == 'T1_4' || partie.tour.toString() == 'T2_4'}">
+		<input class="form-check-input" type="radio" name="carte" value="2" required>
+		<label class="form-check-label text-light"> carte 3 </label>
+	</div>
+	<div class="form-check me-3" th:if="${partie.tour.toString() == 'T1_4'}">
+		<input class="form-check-input" type="radio" name="carte" value="3" required>
+		<label class="form-check-label text-light"> carte 4 </label>
+	</div>
+	<button class="btn btn-light btn-sm" type="submit">Poser</button>
+</form>

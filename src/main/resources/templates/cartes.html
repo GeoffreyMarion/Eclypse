@@ -1,0 +1,22 @@
+<div th:replace="fragments/header::header"></div>
+
+<div class="container">
+	<div class="bg-dark text-light py-1 pl-4">
+		<h2 class="mx-5">Liste des cartes</h2>
+	</div>
+	<br>
+	<ul class="bg-secondary text-light py-1 pl-4">
+	<li>Il y a 5 cartes pour chaque Caste (noble,pretre,guildien)</li>
+	<li>3 castes d'aliens</li>
+	<li>3 cartes pour chaque Couleur (rouge,vert,bleu,jaune,orange)</li>
+	<li>3 cartes pour chaque valeur (1 à 5) hors cartes grises</li>
+	<li>Une carte grise de valeur 7, une de valeur 3 et une de
+	valeur 2.</li>
+	</ul>
+	<div class="d-flex flex-wrap">
+		<div th:each="carte:${cartes}" class="me-5 mb-5 border border-dark">
+			<img alt="image" th:src="${carte.image}" style="height: 350px;">
+		</div>
+	</div>
+</div>
+<div th:replace="fragments/footer::footer"></div>

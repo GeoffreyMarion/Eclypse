@@ -1,11 +1,8 @@
 package com.eclypse.model;
 
 public enum Tag {
-joueur,
 autre,
 une,
-ennemi,
-ennemis,
 noble,
 guildien,
 pretre,

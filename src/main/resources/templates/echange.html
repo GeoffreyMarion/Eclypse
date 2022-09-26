@@ -1,0 +1,161 @@
+<div th:replace="fragments/header::header"></div>
+
+<div class="container">
+	<div class="bg-dark text-light py-1 pl-4">
+		<h2 class="mx-5">Table de jeu</h2>
+	</div>
+	<div th:replace="fragments/tour::tour4j"></div>
+	<div class="d-flex">
+		<!-- 		<div class="col-2">menu boutons</div> -->
+		<div class="col-12">
+		<br>
+			<div class="d-flex">
+				<!-- 			Joueur1 -->
+				<div class="col-5 bg-dark">
+					<div class="text-light  border border-light bg-secondary mb-1">
+						<span class="position-relative start-0 ms-2 fw-bold" th:text="Joueur1+' '+${joueur1.nom}"></span> <span
+							class="position-relative start-50 fw-bold" th:text="Score+' '+${joueur1.score.valeur}"></span><span
+							class="position-relative end-0 fw-bold" th:text="Caste+' '+${joueur1.caste}"></span>
+					</div>
+					<div
+						th:if="${partie.phase.toString() == 'E12'} or ${partie.phase.toString() == 'E14'}">
+						<form th:replace="fragments/choix::checkbox"></form>
+					</div>
+					<div class="d-flex flex-wrap px-2 mb-2">
+						<img alt="main" src="/images/main.png">
+						<div th:each="carte:${joueur1.main}">
+							<div class="border border-dark me-2">
+								<img th:alt="${carte.nom}" th:src="${carte.image}"
+									style="height: 200px;">
+							</div>
+						</div>
+					</div>
+					<div class="d-flex flex-wrap px-2 pb-2">
+					<img alt="table" src="/images/table.png">
+						<div class="d-flex" th:each="carte:${joueur1.table}">
+							<div class="border border-dark me-2">
+								<img th:alt="${carte.nom}" th:src="${carte.image}"
+									style="height: 200px;">
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<div class="col-2"></div>
+				<!-- 				Joueur2 -->
+				<div class="col-5 bg-dark">
+					<div class="text-light  border border-light bg-secondary mb-1">
+						<span class="position-relative start-0 ms-2 fw-bold" th:text="Joueur2+' '+${joueur2.nom}"></span> <span
+							class="position-relative start-50 fw-bold" th:text="Score+' '+${joueur2.score.valeur}"></span> <span
+							class="position-relative end-0 fw-bold" th:text="Caste+' '+${joueur2.caste}"></span>
+					</div>
+										<div
+						th:if="${partie.phase.toString() == 'E21'} or ${partie.phase.toString() == 'E23'}">
+						<form th:replace="fragments/choix::checkbox"></form>
+					</div>
+					<div class="d-flex flex-wrap px-2 mb-2">
+					<img alt="main" src="/images/main.png">
+						<div class="d-flex" th:each="carte:${joueur2.main}">
+							<div class="border border-dark me-2">
+								<img th:alt="${carte.nom}" th:src="${carte.image}"
+									style="height: 200px;">
+							</div>
+						</div>
+					</div>
+					<div class="d-flex flex-wrap px-2 pb-2">
+					<img alt="table" src="/images/table.png">
+						<div class="d-flex" th:each="carte:${joueur2.table}">
+							<div class="border border-dark me-2">
+								<img th:alt="${carte.nom}" th:src="${carte.image}"
+									style="height: 200px;">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mx-auto text-bg-danger col-4 fw-bold">
+				<div class="m-4" th:if="${partie.phase.toString() == 'E12'}"
+					>Echange Joueur1 avec le Joueur2</div> 
+				<div class="m-4" th:if="${partie.phase.toString() == 'E21'}"
+					>Contre-echange Joueur2 avec le Joueur1</div> 
+				<div class="m-4" th:if="${partie.phase.toString() == 'E23'}"
+					>Echange Joueur2 avec le Joueur3</div> 
+				<div class="m-4" th:if="${partie.phase.toString() == 'E32'}"
+					>Contre-echange Joueur3 avec le Joueur2</div>
+				<div class="m-4" th:if="${partie.phase.toString() == 'E34'}"
+					>Echange Joueur3 avec le Joueur4</div> 
+				<div class="m-4" th:if="${partie.phase.toString() == 'E43'}"
+					>Contre-echange Joueur4 avec le Joueur3</div> 
+				<div class="m-4" th:if="${partie.phase.toString() == 'E41'}"
+					>Echange Joueur4 avec le Joueur1</div> 
+				<div class="m-4" th:if="${partie.phase.toString() == 'E14'}"
+					>Contre-echange Joueur1 avec le Joueur4</div> 
+			</div>
+			<div class="d-flex">
+				<!-- 			Joueur4 -->
+				<div class="col-5 bg-dark">
+					<div class="text-light  border border-light bg-secondary mb-1">
+						<span class="position-relative start-0 ms-2 fw-bold" th:text="Joueur4+' '+${joueur4.nom}"></span> <span
+							class="position-relative start-50 fw-bold" th:text="Score+' '+${joueur4.score.valeur}"></span> <span
+							class="position-relative end-0 fw-bold" th:text="Caste+' '+${joueur4.caste}"></span>
+					</div>
+					<div
+						th:if="${partie.phase.toString() == 'E41'} or ${partie.phase.toString() == 'E43'}">
+						<form th:replace="fragments/choix::checkbox"></form>
+					</div>
+					<div class="d-flex flex-wrap px-2 mb-2">
+					<img alt="main" src="/images/main.png">
+						<div class="d-flex" th:each="carte:${joueur4.main}">
+							<div class="border border-dark me-2">
+								<img th:alt="${carte.nom}" th:src="${carte.image}"
+									style="height: 200px;">
+							</div>
+						</div>
+					</div>
+					<div class="d-flex flex-wrap px-2 pb-2">
+					<img alt="table" src="/images/table.png">
+						<div class="d-flex" th:each="carte:${joueur4.table}">
+							<div class="border border-dark me-2">
+								<img th:alt="${carte.nom}" th:src="${carte.image}"
+									style="height: 200px;">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-2"></div>
+				<!-- 				joueur3 -->
+				<div class="col-5 bg-dark">
+					<div class="text-light  border border-light bg-secondary mb-1">
+						<span class="position-relative start-0 ms-2 fw-bold" th:text="Joueur3+' '+${joueur3.nom}"></span> <span
+							class="position-relative start-50 fw-bold" th:text="Score+' '+${joueur3.score.valeur}"></span> <span
+							class="position-relative end-0 fw-bold" th:text="Caste+' '+${joueur3.caste}"></span>
+					</div>
+										<div
+						th:if="${partie.phase.toString() == 'E32'} or ${partie.phase.toString() == 'E34'}">
+						<form th:replace="fragments/choix::checkbox"></form>
+					</div>
+					<div class="d-flex flex-wrap px-2 mb-2">
+					<img alt="main" src="/images/main.png">
+						<div class="d-flex" th:each="carte:${joueur3.main}">
+							<div class="border border-dark me-2">
+								<img th:alt="${carte.nom}" th:src="${carte.image}"
+									style="height: 200px;">
+							</div>
+						</div>
+					</div>
+					<div class="d-flex flex-wrap px-2 pb-2">
+					<img alt="table" src="/images/table.png">
+						<div class="d-flex" th:each="carte:${joueur3.table}">
+							<div class="border border-dark me-2">
+								<img th:alt="${carte.nom}" th:src="${carte.image}"
+									style="height: 200px;">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+<div th:replace="fragments/footer::footer"></div>
