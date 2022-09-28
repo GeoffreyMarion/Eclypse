@@ -69,6 +69,7 @@ public class Scorespartie {
 			scorev= scorev + score.synergie(joueur) + score.suite(joueur) + score.caste(joueur)
 					+ score.couleur(joueur) + score.famille(joueur);
 			scores.add(scorev);
+			joueur.getScore().setValeur(scorev);
 		}
 		return scores;
 	}
