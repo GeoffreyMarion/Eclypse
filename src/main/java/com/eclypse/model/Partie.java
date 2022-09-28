@@ -8,12 +8,10 @@ public class Partie {
 
 	private Long id_partie;
 
-	private ArrayList<Joueur> joueurs;
-
 	private ArrayList<Carte> bibliotheque;
 	private ArrayList<Carte> cimetiere;
-
-	private ArrayList<Score> score;
+	
+	private Scorespartie scorepartie;
 
 	private Tour tour;
 	private Phase phase;
@@ -24,14 +22,6 @@ public class Partie {
 
 	public void setId_partie(Long id_partie) {
 		this.id_partie = id_partie;
-	}
-
-	public ArrayList<Joueur> getJoueurs() {
-		return joueurs;
-	}
-
-	public void setJoueurs(ArrayList<Joueur> joueurs) {
-		this.joueurs = joueurs;
 	}
 
 	public ArrayList<Carte> getBibliotheque() {
@@ -50,12 +40,12 @@ public class Partie {
 		this.cimetiere = cimetiere;
 	}
 
-	public ArrayList<Score> getScore() {
-		return score;
+	public Scorespartie getScorepartie() {
+		return scorepartie;
 	}
 
-	public void setScore(ArrayList<Score> score) {
-		this.score = score;
+	public void setScorepartie(Scorespartie scorepartie) {
+		this.scorepartie = scorepartie;
 	}
 
 	public Tour getTour() {
@@ -74,19 +64,14 @@ public class Partie {
 		this.phase = phase;
 	}
 
-	public Partie(ArrayList<Joueur> joueurs, ArrayList<Carte> bibliotheque) {
-		this.joueurs = joueurs;
-		this.bibliotheque = bibliotheque;
-	}
-
 	public Partie() {
 
 	}
 
 	@Override
 	public String toString() {
-		return "Partie [id_partie=" + id_partie + ", joueurs=" + joueurs + ", bibliotheque=" + bibliotheque
-				+ ", cimetiere=" + cimetiere + ", score=" + score + ", tour=" + tour + "]";
+		return "Partie [id_partie=" + id_partie +", bibliotheque=" + bibliotheque
+				+ ", cimetiere=" + cimetiere +", tour=" + tour + "]";
 	}
 
 //méthodes
@@ -95,14 +80,18 @@ public class Partie {
 	public ArrayList<Joueur> lancerpartie(Partie partie, ArrayList<String> noms, ArrayList<Caste> castes,
 			ArrayList<Carte> bibliotheque) {
 		int nbr_joueurs = castes.size();
+		Scorespartie scorespartie = new Scorespartie();
+		ArrayList <String> nomsj= new ArrayList <String>();
 		ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 		for (int i = 0; i < nbr_joueurs; ++i) {
 			Score score = new Score(0);
 			Joueur joueur = new Joueur(i, noms.get(i), score, castes.get(i), new ArrayList<Carte>(),
 					new ArrayList<Carte>());
 			joueurs.add(joueur);
+			nomsj.add(noms.get(i));
 		}
-		partie.setJoueurs(joueurs);
+		scorespartie.setNomjoueurs(nomsj);
+		partie.setScorepartie(scorespartie);
 		partie.setBibliotheque(bibliotheque);
 		return joueurs;
 	}
@@ -113,11 +102,11 @@ public class Partie {
 		return randcarte;
 	}
 
-	public void distribuer(Partie partie) {
+	public void distribuer(Partie partie,ArrayList<Joueur> joueurs) {
 		ArrayList<Carte> bibliotheque = partie.getBibliotheque();
 		int pioche = bibliotheque.size();
-		ArrayList<Joueur> joueurs = partie.getJoueurs();
-		int nbre = 8 - partie.getJoueurs().size();
+		ArrayList<String> njoueurs = partie.getScorepartie().getNomjoueurs();
+		int nbre = 8 - njoueurs.size();
 		for (Joueur joueur : joueurs) {
 			for (int i = 1; i < nbre + 1; ++i) {
 				Carte carte = bibliotheque.get(randcarte(pioche));
@@ -158,9 +147,9 @@ public class Partie {
 
 		ArrayList<Joueur> joueursc = new ArrayList<Joueur>();
 		if (cible == Cible.joueur) {
-			joueurs.add(joueur);
+			joueursc.add(joueur);
 		} else if (cible == Cible.ennemi) {
-			joueurs.add(joueurc);
+			joueursc.add(joueurc);
 		} else if (cible == Cible.ennemis) {
 			joueursp.remove(joueur);
 			joueursc = joueursp;
@@ -237,17 +226,6 @@ public class Partie {
 			// autres tags particuliers a tester
 			// (obun,vao,ukar,aurige,avesti,frere,eskatonique)
 		}
-	}
-
-	public ArrayList<Score> calculscore(ArrayList<Joueur> joueurs) {
-		ArrayList<Score> scores = new ArrayList<Score>();
-		for (Joueur joueur : joueurs) {
-			Score score = joueur.getScore();
-			score.setValeur(score.getValeur() + score.synergie(joueur) + score.suite(joueur) + score.caste(joueur)
-					+ score.couleur(joueur) + score.famille(joueur));
-			scores.add(score);
-		}
-		return scores;
 	}
 
 	public ArrayList<Carte> mainJouC(Joueur joueur) {

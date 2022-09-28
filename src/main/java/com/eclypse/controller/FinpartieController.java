@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.eclypse.model.Joueur;
 import com.eclypse.model.Partie;
-import com.eclypse.model.Score;
-import com.eclypse.model.Scorespartie;
 import com.eclypse.repository.ScorespartieRepository;
 
 @Controller
@@ -36,31 +34,29 @@ public class FinpartieController {
 		Joueur joueur4=(Joueur) session.getAttribute("joueur4");
 		joueurs.add(joueur4);
 		Partie partie= (Partie) session.getAttribute("partie");
-		partie.setJoueurs(joueurs);
-		ArrayList <Score> scores=partie.calculscore(joueurs);
-		partie.setScore(scores);
+		ArrayList <Integer> scores=partie.getScorepartie().calculscore(joueurs);
+		partie.getScorepartie().setScores(scores);
 		
 		int scoremax=0;
 		int index=-1;
 		int gagnant=0;
-		for (Score score : scores) {
+		for (int score : scores) {
 			index++;
-			if(score.getValeur()>scoremax){
-				scoremax=score.getValeur();
+			if(score>scoremax){
+				scoremax=score;
 				gagnant=index;
 			}
 		}
 		Joueur jgagnant= joueurs.get(gagnant);
 		model.addAttribute("jgagnant",jgagnant);
+		model.addAttribute("joueurs",joueurs);
 		model.addAttribute("partie",partie);
 		model.addAttribute("joueur1",joueur1);
 		model.addAttribute("joueur2",joueur2);
 		model.addAttribute("joueur3",joueur3);
 		model.addAttribute("joueur4",joueur4);
 		
-		Scorespartie scorepartie = new Scorespartie();
-		scorepartie.remplirscores(partie, scorepartie);
-		scorespartieRepository.save(scorepartie);
+		scorespartieRepository.save(partie.getScorepartie());
 		
 		return "finpartie";
 	}

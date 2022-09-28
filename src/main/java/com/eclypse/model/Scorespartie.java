@@ -60,23 +60,17 @@ public class Scorespartie {
 		return "Scorespartie [id_scorespartie=" + id_scorespartie + ", nomjoueurs=" + nomjoueurs + ", scores=" + scores
 				+ "]";
 	}
-
-	public void remplirscores(Partie partie,Scorespartie scorepartie) {
-		ArrayList <String> noms= new ArrayList<String>();
-		ArrayList <Joueur> joueurs=partie.getJoueurs();
+	
+	public ArrayList<Integer> calculscore(ArrayList<Joueur> joueurs) {
+		ArrayList<Integer> scores = new ArrayList<Integer>();
 		for (Joueur joueur : joueurs) {
-			String nom= joueur.getNom();
-			noms.add(nom);
+			Score score= joueur.getScore();
+			int scorev = joueur.getScore().getValeur();
+			scorev= scorev + score.synergie(joueur) + score.suite(joueur) + score.caste(joueur)
+					+ score.couleur(joueur) + score.famille(joueur);
+			scores.add(scorev);
 		}
-		scorepartie.setNomjoueurs(noms);
-		
-		ArrayList<Integer> scoresp = new ArrayList<Integer>();
-		ArrayList <Score> scores=partie.getScore();
-		for (Score score : scores) {
-			int scorej= score.getValeur();
-			scoresp.add(scorej);
-		}
-		scorepartie.setScores(scoresp);
+		return scores;
 	}
 	
 	public ArrayList <Scorespartie> creerscores(){

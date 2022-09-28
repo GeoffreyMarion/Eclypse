@@ -61,7 +61,7 @@ public class LancerPartieController {
 		bibliotheque = (ArrayList<Carte>) carteRepository.findAll();
 		
 		ArrayList <Joueur> joueurs=partie.lancerpartie(partie, nomsj, castesj, bibliotheque);
-		partie.distribuer(partie);
+		partie.distribuer(partie,joueurs);
 		int num=0;
 		for (Joueur joueur : joueurs) {
 			num++;

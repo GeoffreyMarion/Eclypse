@@ -64,7 +64,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="joueur:${partie.joueurs}">
+						<tr th:each="joueur:${joueurs}">
 							<th scope="row" th:text="${joueur.id_joueur+1}"></th>
 							<td scope="row" th:text="${joueur.nom}+' - '+${joueur.caste}"></td>
 							<td th:text="${joueur.score.valeur}"></td>
