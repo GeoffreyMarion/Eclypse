@@ -18,8 +18,6 @@ public class Score {
 		this.valeur = valeur;
 	}
 	
-	
-
 	@Override
 	public String toString() {
 		return ""+valeur+"";

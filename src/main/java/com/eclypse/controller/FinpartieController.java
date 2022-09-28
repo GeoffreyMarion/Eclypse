@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.eclypse.model.Joueur;
 import com.eclypse.model.Partie;
 import com.eclypse.model.Score;
-import com.eclypse.repository.PartieRepository;
+import com.eclypse.model.Scorespartie;
+import com.eclypse.repository.ScorespartieRepository;
 
 @Controller
 public class FinpartieController {
 	
 	@Autowired
-	private PartieRepository partieRepository;
+	private ScorespartieRepository scorespartieRepository;
 	
 	@GetMapping("/finpartie")
 	public String getfindepartie(Model model,HttpServletRequest request,HttpServletResponse response) {
@@ -57,7 +58,9 @@ public class FinpartieController {
 		model.addAttribute("joueur3",joueur3);
 		model.addAttribute("joueur4",joueur4);
 		
-		//partieRepository.save(partie);
+		Scorespartie scorepartie = new Scorespartie();
+		scorepartie.remplirscores(partie, scorepartie);
+		scorespartieRepository.save(scorepartie);
 		
 		return "finpartie";
 	}

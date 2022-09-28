@@ -1,27 +1,17 @@
 package com.eclypse.model;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.concurrent.ThreadLocalRandom;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
 public class Partie{
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_partie;
 	
-	//@NonNull
 	private ArrayList <Joueur> joueurs;
 	
 	private ArrayList <Carte> bibliotheque;
 	private ArrayList <Carte> cimetiere;
 	
-	//@NonNull
 	private ArrayList <Score> score;
 	
 	private Tour tour;

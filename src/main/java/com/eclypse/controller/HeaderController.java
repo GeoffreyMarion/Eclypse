@@ -8,9 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.eclypse.model.Carte;
-import com.eclypse.model.Partie;
+import com.eclypse.model.Scorespartie;
 import com.eclypse.repository.CarteRepository;
-import com.eclypse.repository.PartieRepository;
+import com.eclypse.repository.ScorespartieRepository;
 
 
 @Controller
@@ -20,7 +20,7 @@ public class HeaderController {
 	private CarteRepository carteRepository;
 	
 	@Autowired
-	private PartieRepository partieRepository;
+	private ScorespartieRepository scorespartieRepository;
 	
 	@GetMapping("/cartes")
 	public String getcartes(Model model) {
@@ -41,10 +41,18 @@ public class HeaderController {
 	
 	@GetMapping("/scores")
 	public String getscores(Model model) {
-		//ArrayList <Partie> parties= (ArrayList<Partie>) partieRepository.findAll();
-		//model.addAttribute("parties",parties);
+		ArrayList <Scorespartie> scoresparties= (ArrayList<Scorespartie>) scorespartieRepository.findAll();
+		model.addAttribute("scoresparties",scoresparties);
 		return "scores";
 	}
 	
 }
 
+//récup les Scores en instance
+// Scorespartie scorespartie = new Scorespartie();
+//scoresparties= scorespartie.creerscores();
+
+//création des cartes en base
+//		for (Scorespartie scorespartie : scoresparties) {
+//			scorespartieRepository.save(scorespartie);
+//		}

@@ -33,6 +33,7 @@ public class LancerPartieController {
 		castes.add(Caste.guildien);
 		castes.add(Caste.pretre);
 		model.addAttribute("castes", castes);
+		
 		return "newpartie";
 	}
 	
@@ -78,7 +79,7 @@ public class LancerPartieController {
 
 //récup des cartes en instance
 //bibliotheque= carte.createbibliotheque();
-
+//
 //création des cartes en base
 //		for (Carte carteb : bibliotheque) {
 //			carteRepository.save(carteb);
